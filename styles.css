@@ -81,6 +81,43 @@ body.fade-out .apply-effect {
     color: #00ff88;
     transform: scale(1.1);/* Màu khi hover */
 }
+.projects-titles{
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    display: block;
+}
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 100%;
+}
+div.gallery:hover {
+    border: 1px solid #777;
+    transition: border-color 0.3s ease;
+}
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 /* Nội dung chính */
 main {
     padding: 20px;
@@ -93,6 +130,10 @@ section {
 
 /* Cho màn hình nhỏ */
 @media (max-width: 768px) {
+    .responsive {
+        width: 100%;
+        flex-direction: column;
+    }
     .nav-links {
         display: none;
         flex-direction: column;
