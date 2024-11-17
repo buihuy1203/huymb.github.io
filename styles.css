@@ -102,6 +102,7 @@ section {
         right: 0;
         width: 200px;
         border-radius: 20px;
+        gap: 10px
     }
     .toggle-button {
         display: block;
