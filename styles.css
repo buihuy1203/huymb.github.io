@@ -28,7 +28,6 @@ body.fade-out .apply-effect {
 }
 main {
     flex: 1;
-    padding-bottom: 50px; /* Nội dung chiếm phần còn lại của trang */
 }
 footer{
     font-size: 15px;
