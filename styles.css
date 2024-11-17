@@ -1,0 +1,130 @@
+/* Định dạng chung */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F9E1E0;
+    transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+body.fade-out .apply-effect {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+/* Thanh điều hướng */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #44916f;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    color: white;
+    position: relative;
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Papyrus, fantasy;
+}
+
+/* Danh sách liên kết */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Căn giữa các liên kết trong nav */
+    flex: 1; /* Cho phép nav-links chiếm không gian có sẵn */
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s, transform 0.3s;
+    font-family: Papyrus, fantasy;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #00ff88;
+    transform: scale(1.1); /* Màu khi hover */
+}
+
+.lang-button, .toggle-button {
+    background: none;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin-left: 20px;
+    font-size: 20px;
+}
+.toggle-button {
+    display:none;
+}
+.lang-button:hover {
+    color: #00ff88;
+    transform: scale(1.1);/* Màu khi hover */
+}
+/* Nội dung chính */
+main {
+    padding: 20px;
+}
+
+section {
+    padding: 50px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #c28080;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        border-radius: 20px;
+    }
+    .toggle-button {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        align-items: right;
+        margin-left:auto;
+    }
+    .nav-links.active {
+        display: flex; /* Hiển thị menu khi có class active */
+    }
+
+    .lang-button {
+        margin-left: 0; /* Đặt nút ngôn ngữ sát với menu */
+    }
+
+    .toggle-button {
+        margin-left: 0; /* Đặt nút menu sát với nút ngôn ngữ */
+    }
+    .navbar {/* Đổi thành cột khi màn hình nhỏ */
+        align-items: flex-start; /* Các phần tử căn trái */
+    }
+}
