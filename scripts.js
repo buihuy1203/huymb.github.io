@@ -1,15 +1,11 @@
-const toggleButton = document.getElementById('menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.querySelector(".toggle-button");
+    const navLinks = document.querySelector(".nav-links");
 
-// Xử lý sự kiện nhấn nút
-if (toggleButton && navLinks) {
-    toggleButton.addEventListener('click', () => {
-        navLinks.classList.toggle('active'); // Thêm/xóa lớp 'active'
-        console.log('Menu toggled'); // In ra console để kiểm tra
+    toggleButton.addEventListener("click", () => {
+        navLinks.classList.toggle("active"); // Thêm/gỡ lớp active
     });
-} else {
-    console.error('Toggle button or nav links not found');
-}
+});
 
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
