@@ -1,4 +1,7 @@
 /* Định dạng chung */
+html {
+    scroll-behavior: smooth; /* This enables smooth scrolling globally */
+  }
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -62,6 +65,8 @@ img.imgclu{
     line-height: 1.5;
     word-spacing: -3px;
     text-align-last: left;
+    padding: 0;
+    margin: 25px;
 }
 /* Thanh điều hướng */
 .navbar {
@@ -75,7 +80,28 @@ img.imgclu{
     color: black;
     position: relative;
 }
-
+#scroll{
+    display: block; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: rgba(76, 159, 184, 0.619); /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 20px; /* Increase font size */
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+#scroll:hover {
+    background-color: rgb(76, 159, 184); /* Add a dark-grey background on hover */
+  }
 /* Logo */
 .logo {
     font-size: 20px;
@@ -85,7 +111,25 @@ img.imgclu{
     padding: 10px;
     border-radius: 100px;
 }
-
+.downbut{
+    border: none;
+    padding: 15px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    background-color: rgb(251, 229, 138);
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    cursor: pointer;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-wrap:nowrap;
+}
+.downbut:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.02);
+}
 /* Danh sách liên kết */
 .nav-links {
     list-style: none;
@@ -153,6 +197,7 @@ a.current-page {
     z-index: 0;
 }
 .responsive {
+    align-items: center;
     padding: 0 6px;
     float: right;
     width: 100%;
@@ -162,8 +207,8 @@ a.current-page {
 }
 div.gallery {
   text-align: center;
-  width: 100%;
-  display: inline-block;
+  width: 25%;
+  display: block;
   overflow: hidden;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -364,5 +409,8 @@ section {
         padding: 0; /* Không thêm padding */
         border-radius: 0; /* Không border radius */
         opacity: 1;
+    }
+    div.gallery{
+        width: 100%;
     }
 }
