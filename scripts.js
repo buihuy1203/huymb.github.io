@@ -137,4 +137,4 @@ function topFunction() {
 
 document.getElementById('resume').addEventListener('click', function(event) {
     event.preventDefault();  // Ngừng chuyển hướng trang
-}
+});
