@@ -1,9 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
     const toggleButton = document.querySelector(".toggle-button");
     const navLinks = document.querySelector(".nav-links");
-
+    let zoomedIn =false;
     toggleButton.addEventListener("click", () => {
-        navLinks.classList.toggle("active"); // Thêm/gỡ lớp active
+        if (zoomedIn) {
+            navLinks.classList.remove("show");
+            navLinks.classList.add("hide");
+        } else {
+            navLinks.classList.remove("hide");
+            navLinks.classList.add("show");
+        }
+        zoomedIn = !zoomedIn;
     });
 });
 
@@ -82,3 +89,30 @@ langToggleButton.addEventListener('click', () => {
 
 // Khởi tạo ngôn ngữ mặc định khi tải trang
 changeLanguage(currentLang);
+
+document.querySelectorAll('.openPopup').forEach(div => {
+    div.addEventListener('click', function() {
+        const popupId = this.getAttribute('data-popup');
+        const popup = document.getElementById(popupId);
+        popup.classList.remove('hide'); 
+        popup.classList.add('show');
+    });
+});
+
+document.querySelectorAll('.close').forEach(span => {
+    span.addEventListener('click', function() {
+        const popupId = this.getAttribute('data-popup');
+        const popup = document.getElementById(popupId);
+        popup.classList.remove('show');
+        popup.classList.add('hide');
+    });
+});
+
+window.addEventListener('click', function(event) {
+    document.querySelectorAll('.popup').forEach(popup => {
+        if (event.target === popup) {
+            popup.classList.remove('show');
+            popup.classList.add('hide');
+        }
+    });
+});

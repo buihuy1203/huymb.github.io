@@ -150,7 +150,7 @@ a.current-page {
     font-family: Arial, sans-serif;
     font-weight: bold;
     display: block;
-    z-index: 2;
+    z-index: 0;
 }
 .responsive {
     padding: 0 6px;
@@ -161,28 +161,107 @@ a.current-page {
     gap: 30px;
 }
 div.gallery {
-  margin: 5px;
-  border: 1px solid #ccc;
-  float: left;
+  text-align: center;
   width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 div.gallery:hover {
-    border: 1px solid #777;
-    transition: border-color 0.3s ease;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.02);
 }
 div.gallery img {
     width: 100%;
     height: auto;
+    display: block;
 }
 div.desc {
-    padding: 15px;
+    padding: 10px;
     text-align: center;
+    background-color: white;
 }
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
   }
+.popup {
+    display: flex; /* Ẩn popup ban đầu */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;/* Dành cho các trình duyệt WebKit */
+    z-index: 1;
+    opacity: 0; /* Ẩn popup */
+    visibility: hidden; /* Ẩn phần tử */ 
+    transform: scale(0); 
+    transition: opacity 0.3s ease, visibility 0s 0.2s;
+}
+
+.popup.hide {
+    opacity: 0;
+    transform: scale(0); /* Ẩn phần tử */ 
+    animation-name: dispopupanimate;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1); 
+    animation-name: popupanimate;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    background-color: rgba(255, 255, 255, 0.506);
+    backdrop-filter: blur(10px); /* Làm mờ nền phía sau */
+    -webkit-backdrop-filter: blur(10px); 
+}
+@keyframes popupanimate {
+    0% {
+        transform: scale(0); /* Bắt đầu với kích thước nhỏ */
+    }
+    100% {
+        transform: scale(1); /* Phóng to đầy đủ */
+    }
+}
+
+/* Keyframe animation khi popup tắt */
+@keyframes dispopupanimate {
+    0% {
+        transform: scale(1); /* Bắt đầu với kích thước đầy đủ */
+    }
+    100% {
+        transform: scale(0); /* Thu nhỏ và ẩn */
+    }
+}
+.popup-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 75%;
+    height: 75%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    cursor: pointer;
+    color:black;
+}
 /* Nội dung chính */
 main {
     padding: 20px;
@@ -228,7 +307,7 @@ section {
         margin-left: 0;
     }
     .nav-links {
-        display: none;
+        display: flex;
         flex-direction: column;
         background-color: #ffffff;
         position: absolute;
@@ -237,32 +316,44 @@ section {
         width: 200px;
         border-radius: 10px;
         gap: 10px;
-        padding: 10px;   
+        padding: 15px;   
+        z-index: 2;
+        margin-right: 20px;
+        transform-origin: right top; 
+        opacity: 0; /* Ẩn popup */
+        visibility: hidden; /* Ẩn phần tử */ 
+        transition: opacity 0.2s ease, visibility 0s 0.2s;
     }
     .nav-links a{
         text-align: left;
+        font-size: 20px;
     }
     .toggle-button {
         display: block;
-        background: none;
+        border-radius: 150px;
+        background-color: white;
         border: none;
         color: rgb(0, 0, 0);
         font-size: 20px;
         cursor: pointer;
         align-items: right;
-        margin-left:auto;
+        margin-left:0;
     }
-    .nav-links.active {
-        display: flex;
+    .nav-links.hide{
+        opacity: 0; /* Ẩn popup */
+        visibility: hidden; /* Ẩn phần tử */ 
          /* Hiển thị menu khi có class active */
+         animation: dispopupanimate 0.3s ease-in-out forwards;
     }
+    .nav-links.show{
+        opacity: 1; /* Ẩn popup */
+        visibility: visible; /* Ẩn phần tử */ 
+        /* Hiển thị menu khi có class active */
+        animation: popupanimate 0.3s ease-in-out forwards;
+   }
 
     .lang-button {
         margin-left: 0; /* Đặt nút ngôn ngữ sát với menu */
-    }
-
-    .toggle-button {
-        margin-left: 0; /* Đặt nút menu sát với nút ngôn ngữ */
     }
     .navbar {/* Đổi thành cột khi màn hình nhỏ */
         align-items: flex-start; /* Các phần tử căn trái */
