@@ -5,7 +5,7 @@ html {
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-image: url("background/background.png");
+    background-image: url("background/background.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
@@ -290,22 +290,159 @@ div.desc {
     }
 }
 .popup-content {
-    position: relative;
+    position: fixed;
     background: white;
     padding: 20px;
     border-radius: 8px;
-    width: 75%;
-    height: 75%;
+    width: 80%;
+    height: 80%;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow-y: auto;
+}
+
+/* Optional: để thay đổi kiểu của thanh cuộn */
+.popup-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 .close {
     position: absolute;
     top: 10px;
     right: 10px;
+    float:right;
     font-size: 50px;
     cursor: pointer;
     color:black;
+    z-index: 100;
+}
+.project-info{
+    position: relative;
+    width: 25%;
+    height: auto;
+    float: right;
+    margin-left: 25px;
+    overflow: hidden;
+    display:block;
+}
+.slideshow{
+    display:flex;
+    align-items: center; 
+    justify-content: center;
+    float: left;
+    width: 75%;
+    position: relative;
+    overflow: hidden;
+}
+.slideshow-container {
+    width: 100%;
+    height: 650px;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+  /* Hide the images by default */
+.mySlides {
+    align-items: center; 
+    justify-content: center;
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.mySlides img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: fill;
+}
+  /* Next & previous buttons */
+.prev, .next {
+    border: none;
+    background-color: rgba(128, 128, 128, 0.445);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+  
+  /* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev{
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+  
+  /* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+  
+  /* Number text (1/3 etc) */
+.numbertext {
+    background-color: rgba(116, 116, 116, 0.52);
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 0;
+}
+.dot-box{
+    position: absolute;
+    bottom: -25px; /* Khoảng cách từ dưới lên */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 20; /* Đảm bảo các dot nằm trên ảnh */
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+  
+.active, .dot:hover {
+    background-color: #717171;
+}
+  
+  /* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+  
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
 }
 /* Nội dung chính */
 main {
@@ -396,6 +533,9 @@ section {
         /* Hiển thị menu khi có class active */
         animation: popupanimate 0.3s ease-in-out forwards;
    }
+    .downbut{
+        margin-left: 10%;
+    }
 
     .lang-button {
         margin-left: 0; /* Đặt nút ngôn ngữ sát với menu */
@@ -412,5 +552,36 @@ section {
     }
     div.gallery{
         width: 100%;
+    }
+    .project-info{
+        width: 100%;
+        float: left;
+        margin-right: 0;
+        margin-top: 0;
+        align-items: center;
+        justify-content: center;
+    }
+    .slideshow{
+        display:flex;
+        float: left;
+        width: 100%;
+        position: relative;
+    }
+    .slideshow-container {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        float: left;
+        overflow: hidden;
+    }
+    .mySlides{
+        width: 100%;
+        height: 250px;
+    }
+    .mySlides img {
+        width: 100%;
+        border-radius: 8px;
+        object-fit: fill;
     }
 }

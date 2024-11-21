@@ -38,9 +38,9 @@ const translations = {
     en: {
         name: "Bui Manh Huy",
         info: "Basic Information",
-        progress: "My Progress",
-        projects: "My Projects",
-        awards: "My awards and certifications",
+        progress: "Progress",
+        projects: "Projects",
+        awards: "Awards and certifications",
         contacts: "Contacts"
     },
     jp: {
@@ -89,13 +89,48 @@ langToggleButton.addEventListener('click', () => {
 
 // Khởi tạo ngôn ngữ mặc định khi tải trang
 changeLanguage(currentLang);
+// Điều chỉnh PopUp
+let slideIndex=1;
+function showSlides(n) {
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "flex";
+    dots[slideIndex-1].className += " active";
+}
 
+// Điều hướng slide
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Chuyển tới slide cụ thể
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+window.addEventListener('click', function(event) {
+    document.querySelectorAll('.popup').forEach(popup => {
+        if (event.target === popup) {
+            popup.classList.remove('show');
+            popup.classList.add('hide');
+        }
+    });
+});
 document.querySelectorAll('.openPopup').forEach(div => {
     div.addEventListener('click', function() {
         const popupId = this.getAttribute('data-popup');
         const popup = document.getElementById(popupId);
         popup.classList.remove('hide'); 
         popup.classList.add('show');
+        showSlides(slideIndex); 
     });
 });
 
@@ -108,14 +143,6 @@ document.querySelectorAll('.close').forEach(span => {
     });
 });
 
-window.addEventListener('click', function(event) {
-    document.querySelectorAll('.popup').forEach(popup => {
-        if (event.target === popup) {
-            popup.classList.remove('show');
-            popup.classList.add('hide');
-        }
-    });
-});
 
 // Get the button:
 let scrollbutton = document.getElementById("scroll");
@@ -138,3 +165,8 @@ function topFunction() {
 document.getElementById('resume').addEventListener('click', function(event) {
     event.preventDefault();  // Ngừng chuyển hướng trang
 });
+
+
+
+// Hiển thị slide đầu tiên
+
